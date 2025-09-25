@@ -1,71 +1,88 @@
-body {
-  font-family: 'Roboto', Helvetica, sans-serif;
-  background-color: grey;
+/* Base */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+body{
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  background: #fff;           /* light background improves contrast */
+  color: #111;                /* strong text color */
   margin: 0;
   padding: 0;
+  line-height: 1.6;
+  font-size: 16px;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Stick No Bills', 'Roboto', Helvetica, sans-serif;
+/* Headings can keep your display font if you want */
+h1, h2, h3, h4, h5, h6{
+  font-family: "Stick No Bills", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0 0 .5rem;
 }
 
-.container {
+/* Layout helpers */
+.container{
   max-width: 1080px;
   margin: 0 auto;
-  padding: 0 1rem;
-}
-
-img {
-  width: 100%;
-}
-
-.main-nav ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-}
-
-.main-nav ul li {
-  flex: 1;
-  text-align: center;
-}
-
-.main-nav ul li a {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-  font-size: 1.25rem;
-}
-
-form input,
-form textarea {
-  display: block;
-  width: 100%;
-  margin-bottom: 1rem;
-  padding: .5rem 1rem;
-}
-
-form textarea {
-  min-height: 150px;
-  max-height: 150px;
-  height: 150px;
-  resize: none;
-}
-
-form button {
-  background: none;
-  border: 2px solid black;
   padding: 1rem;
-  text-transform: uppercase;
 }
 
-.site-footer {
-  padding: 2rem 0;
+/* Images */
+img{
+  width: 100%;   /* <— fixed the underscore bug */
+  height: auto;
+  display: block;
+}
+.banner{ width: 100%; height: auto; display: block; }
+
+/* Nav */
+.main-nav ul{
+  list-style: none;
+  padding-left: 0;        /* reset default indent */
+  margin: 0;
+  display: flex;
+  gap: .75rem;            /* larger click targets */
+  flex-wrap: wrap;
+}
+.main-nav a{
+  display: inline-block;
+  padding: .45rem .65rem; /* touch-friendly target */
+  text-decoration: none;
+  color: #0b63ce;         /* high-contrast link color */
+}
+.main-nav a:hover,
+.main-nav a:focus{ text-decoration: underline; }
+
+/* Skip link (hidden until focused) */
+.skip-link{
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus{
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  padding: .5rem .75rem;
+  background: #000;
+  color: #fff;
+  border-radius: .25rem;
+  z-index: 1000;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible{
+  outline: 3px solid #ffbf47;
+  outline-offset: 2px;
+}
+
+/* Links elsewhere in the page */
+a{ color:#0b63ce; }
+a:hover, a:focus{ text-decoration: none; }
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
